@@ -4,6 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes';
 import pontosRoutes from './routes/pontosRoutes';
+import descartesRoutes from './routes/descartesRoutes';
+import { errorMiddleware } from './middlewares/errorMiddleware';
 
 dotenv.config();
 
@@ -14,7 +16,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pontos', pontosRoutes);
-
+app.use('/api/descartes', descartesRoutes);
+app.use(errorMiddleware);
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
